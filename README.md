@@ -1,4 +1,3 @@
-# bussin-bagels-pq
 # bussin-bagels
 # What is bussin bagels?
 You will have 30 seconds to build the best bagel sandwich that you can! Catch every ingrendient that would be on your bagel sandwich, if you catch anything that you wouldn't want to eat you lose!
@@ -8,7 +7,7 @@ Make sure to watch out for the cockroaches, if you get one of those on your bage
 I will be using canvas to complete this project.
 
 # wireframe
-![IMG_2211 2](https://user-images.githubusercontent.com/95590888/152477605-36c0a3a8-4a70-4ae5-8be4-6676f0dd43bb.jpg) | width = 100
+![IMG_2211 2](https://user-images.githubusercontent.com/95590888/152477605-36c0a3a8-4a70-4ae5-8be4-6676f0dd43bb.jpg)
 
 
 # MVP 
