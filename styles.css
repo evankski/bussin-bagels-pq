@@ -1,0 +1,6 @@
+canvas {
+    background-color: lightgray;
+    /* filter: blur(1.3px); */
+    width: 100%;
+    height: 100%;
+}
