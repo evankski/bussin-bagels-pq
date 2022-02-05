@@ -23,8 +23,8 @@ function drawBox(x, y, width, height, color) {
     ctx.fillRect(x, y, width, height)
   }
 
-// class for building squares
-class Ingredients {
+// Class that builds the bagel square
+class Bagels {
   constructor(x, y, width, height, color) {
     this.x = x
     this.y = y
@@ -37,16 +37,31 @@ class Ingredients {
     ctx.fillRect(this.x, this.y, this.width, this.height)
   }
 }
+function fall() {
+    for(i = 0; i < 10; i++) {
+        if (i ===5) {break; }
+        bacon.y = bacon.y +1
+    } 
+    // if(bacon)
+}
+
+function createBacon() {
+    for(i = 0; i < 10; i++) {
+        bacon.render()
+    }
+}
+
 
 // Creating the ingredients
-const bagel = new Ingredients(355, 470, 90, 20, 'brown')
-const bacon = new Ingredients(170, 20, 60, 20, 'red')
+const bagel = new Bagels(355, 470, 90, 20, 'brown')
+const bacon = new Bagels(Math.random() * 200, 100, 60, 20, 'red')
+// const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
 
 
 function movementHandler() {
     const speed = 15
-
+    
     if(pressedKeys.a || pressedKeys.ArrowLeft) bagel.x -= speed
     if(pressedKeys.d || pressedKeys.ArrowRight) bagel.x += speed
     if(pressedKeys.s || pressedKeys.ArrowDown) bagel.x += speed
@@ -57,5 +72,13 @@ function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     movementHandler();
     bagel.render();
-    bacon.render();
+    // bacon.render()
+    fall()
+    setInterval(createBacon, 600)
+    // handleIngredients()
+    gameFrame++
+    // draw()
+    // console.log(gameFrame)
+    // bacon.render();
 }
+gameLoop()
