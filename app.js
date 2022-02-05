@@ -37,24 +37,34 @@ class Bagels {
     ctx.fillRect(this.x, this.y, this.width, this.height)
   }
 }
-function fall() {
-    for(i = 0; i < 10; i++) {
-        if (i ===5) {break; }
+// A FOR LOOP FOR MAKING BACON FALL
+const sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time))
+  }
+
+const fall = async()  =>{
+    // if (i === 5) break
+    for(i = 0; i < 600; i++) {
         bacon.y = bacon.y +1
+        console.log(bacon.y)
+        await sleep(1)
     } 
-    // if(bacon)
+    for(i = 0; i < 600; i++) {
+        lettuce.y = lettuce.y +1
+        await sleep(1)
+    } 
+
 }
 
-function createBacon() {
-    for(i = 0; i < 10; i++) {
-        bacon.render()
-    }
-}
+// function createBacon() {
+//         bacon.render()
+// }
 
 
 // Creating the ingredients
 const bagel = new Bagels(355, 470, 90, 20, 'brown')
-const bacon = new Bagels(Math.random() * 200, 100, 60, 20, 'red')
+let bacon = new Bagels(Math.random() * 400, -50, 60, 20, 'red')
+let lettuce = new Bagels(Math.random() * 600, -50, 50, 50, 'green')
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
 
@@ -72,13 +82,12 @@ function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     movementHandler();
     bagel.render();
-    // bacon.render()
-    fall()
-    setInterval(createBacon, 600)
+    bacon.render()
+    lettuce.render()
     // handleIngredients()
     gameFrame++
     // draw()
     // console.log(gameFrame)
-    // bacon.render();
 }
 gameLoop()
+fall()
