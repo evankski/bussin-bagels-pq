@@ -1,7 +1,7 @@
 /* DOM SELECTORS && EVENT LISTENERS */
 const canvas = document.querySelector("#canvas");
 let score = 0;
-let gameFrame = 0;
+let gameTime = 0;
 let gameLoopInterval = setInterval(gameLoop, 60);
 const pressedKeys = {};
 const bagelImage = new Image(100, 100);
@@ -10,6 +10,7 @@ bagelImage.src = "./img/bagelPNG.png";
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
 let bottomText = document.querySelector("#bottom-text");
+let time = document.querySelector("#timer");
 let gameOver = document.querySelector("#game-over");
 
 /* GAMESTATE/CAVAS RENDERING */
@@ -91,6 +92,22 @@ const randomSpawn = () => {
 }
 let spawnInterval = setInterval(randomSpawn, 5000);
 
+const timeAdd = () => {
+    gameTime = gameTime + 1
+    gameTimeTimer = 30 - gameTime
+    timer.innerText = `${gameTimeTimer} Seconds left`
+}
+let timeInterval = setInterval(timeAdd, 1000)
+
+const timesUp = () => {
+    if(gameTime === 30) {
+        clearInterval(spawnInterval)
+        clearInterval(timeInterval)
+        clearInterval(gameLoopInterval)
+        gameOver.innerText = `Time's up!`
+    }
+}
+
 const fall = () => {
   // if (i === 5) break
   for (i = 0; i < 10; i++) {
@@ -151,7 +168,8 @@ function hitDetection() {
     bagel.y + bagel.height >= cockroach.y &&
     bagel.y <= cockroach.y + cockroach.height
   ) {
-    clearInterval(gameLoopInterval);
+    clearInterval(gameLoopInterval)
+    clearInterval(timeInterval)
     gameOver.innerText = "GAME OVER";
   }
 }
@@ -191,6 +209,7 @@ function gameLoop() {
     fall();
     bagel.render();
     hitDetection();
+    timesUp()
     // handleIngredients()
     // draw()
     // console.log(gameFrame)
