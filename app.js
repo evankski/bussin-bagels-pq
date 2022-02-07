@@ -4,14 +4,21 @@ let score = 0;
 let gameTime = 0;
 let gameLoopInterval = setInterval(gameLoop, 60);
 const pressedKeys = {};
-const bagelImage = new Image(100, 100);
+
+const bagelImage = new Image();
 bagelImage.src = "./img/bagelPNG.png";
+bagelImage.width = 10
+bagelImage.height = 10
+
+
 
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
 let bottomText = document.querySelector("#bottom-text");
 let time = document.querySelector("#timer");
 let gameOver = document.querySelector("#game-over");
+let startButton = document.querySelector('#start-button-id')
+
 
 /* GAMESTATE/CAVAS RENDERING */
 // sets up a 2d canvas
@@ -24,15 +31,17 @@ const ctx = canvas.getContext("2d");
 // canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 
 /* GAME FUNCTIONS */
-function drawBox(x, y, width, height, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(x, y, width, height);
-}
+
+
+// function drawBox(x, y, width, height, color) {
+//     ctx.fillStyle = color;
+//     ctx.fillRect(x, y, width, height);
+// }
 
 // Class that builds the bagel square
 // class Bagels {
-//   constructor(x, y, width, height, image,) {
-//     this.x = x;
+    //   constructor(x, y, width, height, image,) {
+        //     this.x = x;
 //     this.y = y;
 //     this.width = width;
 //     this.height = height;
@@ -46,7 +55,7 @@ function drawBox(x, y, width, height, color) {
 // }
 // class Bagels {
 //   constructor(x, y, width, height, color, type) {
-    
+
 //     this.x = x;
 //     this.y = y;
 //     this.width = width;
@@ -60,57 +69,75 @@ function drawBox(x, y, width, height, color) {
 //   }
 // }
 class Bagels {
-  constructor(x, y, width, height, color) {
+  constructor(x, y, color) {
     this.x = x;
     this.y = y;
-    this.width = width;
-    this.height = height;
+    // this.image = image;
+    // this.width = width;
+    // this.height = height;
     this.color = color;
     this.alive = true;
   }
   render() {
-    ctx.fillStyle = this.color;
+    // ctx.drawImage = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
+
+class ImageBagels extends Bagels {
+    constructor(x, y, color, image, width, height) {
+        super(x, y, color)
+        this.image = image
+        this.width = width
+        this.height = height
+    }
+    render() {
+        console.log(this.image.src)
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
+        // ctx.drawImage(this.image, this.x, this.y);
+    }
+}
+
+
+
+
 // A FOR LOOP FOR MAKING BACON FALL
 // const sleep = (time) => {
 //   return new Promise((resolve) => setTimeout(resolve, time));
 // };
 
 const randomSpawn = () => {
-    bacon.y = Math.random() * -300
-    lettuce.y = Math.random() * -300
-    turkey.y = Math.random() * -300
-    cockroach.y = Math.random() * -300
-    tomato.y = Math.random() * -300
-    mayo.y = Math.random() * -300
-    
-    bacon.x = Math.random() * 750
-    lettuce.x = Math.random() * 750
-    turkey.x = Math.random() * 750
-    cockroach.x = Math.random() * 750
-    tomato.x = Math.random() * 750
-    mayo.x = Math.random() * 750
+  bacon.y = Math.random() * -300;
+  lettuce.y = Math.random() * -300;
+  turkey.y = Math.random() * -300;
+  cockroach.y = Math.random() * -300;
+  tomato.y = Math.random() * -300;
+  mayo.y = Math.random() * -300;
 
-}
+  bacon.x = Math.random() * 750;
+  lettuce.x = Math.random() * 750;
+  turkey.x = Math.random() * 750;
+  cockroach.x = Math.random() * 750;
+  tomato.x = Math.random() * 750;
+  mayo.x = Math.random() * 750;
+};
 let spawnInterval = setInterval(randomSpawn, 5000);
 
 const timeAdd = () => {
-    gameTime = gameTime + 1
-    gameTimeTimer = 30 - gameTime
-    timer.innerText = `${gameTimeTimer} Seconds left`
-}
-let timeInterval = setInterval(timeAdd, 1000)
+  gameTime = gameTime + 1;
+  gameTimeTimer = 30 - gameTime;
+  timer.innerText = `${gameTimeTimer} Seconds left`;
+};
+let timeInterval = setInterval(timeAdd, 1000);
 
 const timesUp = () => {
-    if(gameTime === 30) {
-        clearInterval(spawnInterval)
-        clearInterval(timeInterval)
-        clearInterval(gameLoopInterval)
-        gameOver.innerText = `Time's up!`
-    }
-}
+  if (gameTime === 30) {
+    clearInterval(spawnInterval);
+    clearInterval(timeInterval);
+    clearInterval(gameLoopInterval);
+    gameOver.innerText = `Time's up!`;
+  }
+};
 
 const fall = () => {
   // if (i === 5) break
@@ -168,13 +195,15 @@ function hitDetection() {
     (bagel.x + bagel.width >= turkey.x &&
       bagel.x <= turkey.x + turkey.width &&
       bagel.y + bagel.height >= turkey.y &&
-      bagel.y <= turkey.y + turkey.height) || (bagel.x + bagel.width >= tomato.x &&
-        bagel.x <= tomato.x + tomato.width &&
-        bagel.y + bagel.height >= tomato.y &&
-        bagel.y <= tomato.y + tomato.height) || (bagel.x + bagel.width >= mayo.x &&
-            bagel.x <= mayo.x + mayo.width &&
-            bagel.y + bagel.height >= mayo.y &&
-            bagel.y <= mayo.y + mayo.height)
+      bagel.y <= turkey.y + turkey.height) ||
+    (bagel.x + bagel.width >= tomato.x &&
+      bagel.x <= tomato.x + tomato.width &&
+      bagel.y + bagel.height >= tomato.y &&
+      bagel.y <= tomato.y + tomato.height) ||
+    (bagel.x + bagel.width >= mayo.x &&
+      bagel.x <= mayo.x + mayo.width &&
+      bagel.y + bagel.height >= mayo.y &&
+      bagel.y <= mayo.y + mayo.height)
   ) {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
@@ -184,8 +213,8 @@ function hitDetection() {
     bagel.y + bagel.height >= cockroach.y &&
     bagel.y <= cockroach.y + cockroach.height
   ) {
-    clearInterval(gameLoopInterval)
-    clearInterval(timeInterval)
+    clearInterval(gameLoopInterval);
+    clearInterval(timeInterval);
     gameOver.innerText = "GAME OVER";
   }
 }
@@ -196,7 +225,8 @@ function hitDetection() {
 
 // Creating the ingredients
 // const bagel = new Bagels(355, 470, 90, 20, "./img/bagelPNG.png", "image");
-const bagel = new Bagels(355, 470, 90, 20, "brown");
+// const bagel = new ImageBagels(200, 470, "brown", bagelImage);
+const bagel = new ImageBagels(200, 370, "brown", bagelImage, 100, 100);
 let bacon = new Bagels(Math.random() * 500, -50, 60, 20, "red");
 let lettuce = new Bagels(Math.random() * 500, -150, 50, 50, "green");
 let turkey = new Bagels(Math.random() * 500, -250, 50, 15, "pink");
@@ -217,21 +247,22 @@ function movementHandler() {
 
 
 function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    movementHandler();
-    bacon.render();
-    lettuce.render();
-    turkey.render();
-    cockroach.render();
-    tomato.render();
-    mayo.render();
-    // randomSpawn()
-    fall();
-    bagel.render();
-    hitDetection();
-    timesUp()
-    // handleIngredients()
-    // draw()
-    // console.log(gameFrame)
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  movementHandler();
+  bacon.render();
+  lettuce.render();
+  turkey.render();
+  cockroach.render();
+  tomato.render();
+  mayo.render();
+  // randomSpawn()
+  fall();
+  bagel.render();
+  hitDetection();
+  timesUp();
+  // handleIngredients()
+  // draw()
+  // console.log(gameFrame)
 }
 gameLoop();
+// startButton.addEventListener("click", allIntervals)
