@@ -11,10 +11,18 @@ body {
 
 canvas {
   background-color: darkgray;
-  width: 100%;
-  height: 100%;
+  width: 800;
+  height: 500;
 }
 
+p {
+  font-size: 40px;
+}
+
+h1 {
+  font-size: 60px;
+  color: red;
+}
 /* #container {
   max-width: 50em;
   margin: 0 auto;
