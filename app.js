@@ -74,20 +74,24 @@ class Bagels {
   }
 }
 // A FOR LOOP FOR MAKING BACON FALL
-const sleep = (time) => {
-  return new Promise((resolve) => setTimeout(resolve, time));
-};
+// const sleep = (time) => {
+//   return new Promise((resolve) => setTimeout(resolve, time));
+// };
 
 const randomSpawn = () => {
     bacon.y = Math.random() * -300
     lettuce.y = Math.random() * -300
     turkey.y = Math.random() * -300
     cockroach.y = Math.random() * -300
+    tomato.y = Math.random() * -300
+    mayo.y = Math.random() * -300
     
     bacon.x = Math.random() * 750
     lettuce.x = Math.random() * 750
     turkey.x = Math.random() * 750
     cockroach.x = Math.random() * 750
+    tomato.x = Math.random() * 750
+    mayo.x = Math.random() * 750
 
 }
 let spawnInterval = setInterval(randomSpawn, 5000);
@@ -122,6 +126,12 @@ const fall = () => {
   }
   for (i = 0; i < 10; i++) {
     cockroach.y = cockroach.y + 1;
+  }
+  for (i = 0; i < 10; i++) {
+    tomato.y = tomato.y + 1;
+  }
+  for (i = 0; i < 10; i++) {
+    mayo.y = mayo.y + 1;
   }
 };
 // const fall = async () => {
@@ -158,7 +168,13 @@ function hitDetection() {
     (bagel.x + bagel.width >= turkey.x &&
       bagel.x <= turkey.x + turkey.width &&
       bagel.y + bagel.height >= turkey.y &&
-      bagel.y <= turkey.y + turkey.height)
+      bagel.y <= turkey.y + turkey.height) || (bagel.x + bagel.width >= tomato.x &&
+        bagel.x <= tomato.x + tomato.width &&
+        bagel.y + bagel.height >= tomato.y &&
+        bagel.y <= tomato.y + tomato.height) || (bagel.x + bagel.width >= mayo.x &&
+            bagel.x <= mayo.x + mayo.width &&
+            bagel.y + bagel.height >= mayo.y &&
+            bagel.y <= mayo.y + mayo.height)
   ) {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
@@ -185,6 +201,8 @@ let bacon = new Bagels(Math.random() * 500, -50, 60, 20, "red");
 let lettuce = new Bagels(Math.random() * 500, -150, 50, 50, "green");
 let turkey = new Bagels(Math.random() * 500, -250, 50, 15, "pink");
 let cockroach = new Bagels(Math.random() * 500, -350, 50, 25, "#C4A484");
+let tomato = new Bagels(Math.random() * 500, -400, 60, 60, "maroon");
+let mayo = new Bagels(Math.random() * 500, -450, 60, 60, "white");
 
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
@@ -205,6 +223,8 @@ function gameLoop() {
     lettuce.render();
     turkey.render();
     cockroach.render();
+    tomato.render();
+    mayo.render();
     // randomSpawn()
     fall();
     bagel.render();
