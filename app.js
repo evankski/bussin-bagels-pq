@@ -10,24 +10,34 @@ const bagelImage = new Image();
 bagelImage.src = "./img/cartoonBagel.png";
 
 const lettuceImage = new Image();
-lettuceImage.src = "./img/lettuceSlice.png"
+lettuceImage.src = "./img/lettuceSlice.png";
 
 const cockroachImage = new Image();
-cockroachImage.src = "./img/newCockroach.png"
+cockroachImage.src = "./img/newCockroach.png";
 
 const baconImage = new Image();
-baconImage.src = "./img/cartoonBacon.png"
+baconImage.src = "./img/cartoonBacon.png";
 
 const mayoImage = new Image();
-mayoImage.src = "./img/mayoJar.png"
+mayoImage.src = "./img/mayoJar.png";
 
 const tomatoImage = new Image();
-tomatoImage.src = "./img/betterTomato.png"
+tomatoImage.src = "./img/betterTomato.png";
 
 const turkeyImage = new Image();
-turkeyImage.src = "./img/cartoonSandwichMeat.png"
+turkeyImage.src = "./img/cartoonSandwichMeat.png";
 
+/* AUDIO VARIABLES */
 const timerAudio = new Audio("countdownSound.mp3");
+
+const itemSound = new Audio("collectItem.mp3");
+
+const loseSound = new Audio("loseSound.mp3");
+
+const playSound = () => {
+  itemSound.play()
+}
+
 /* KEYSTROKE EVENT LISTENERS */
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
@@ -36,8 +46,7 @@ document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this
 let bottomText = document.querySelector("#bottom-text");
 let time = document.querySelector("#timer");
 let gameOver = document.querySelector("#game-over");
-let startButton = document.querySelector('#start-button-id')
-
+let startButton = document.querySelector("#start-button-id");
 
 /* GAMESTATE/CAVAS RENDERING */
 // sets up a 2d canvas
@@ -68,22 +77,20 @@ class Bagels {
 
 /* SPAWNS IN AN IMAGE IN PLACE OF THE OLD BOXES */
 class ImageBagels extends Bagels {
-    constructor(x, y, color, image, width, height) {
-        super(x, y, color)
-        this.image = image
-        this.width = width
-        this.height = height
-    }
-    render() {
-        // console.log(this.image.src)
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
-        // ctx.drawImage(this.image, this.x, this.y);
-    }
+  constructor(x, y, color, image, width, height) {
+    super(x, y, color);
+    this.image = image;
+    this.width = width;
+    this.height = height;
+  }
+  render() {
+    // console.log(this.image.src)
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    // ctx.drawImage(this.image, this.x, this.y);
+  }
 }
 
-
-
-/* RESETS ALL INGREDIENTS EVERYTIME THEY HIT THE BOTTOM OF THE PAGE */ 
+/* RESETS ALL INGREDIENTS EVERYTIME THEY HIT THE BOTTOM OF THE PAGE */
 // RANDOMLY CHANGES THE X AND Y AXIS ON AN INTERVAL
 const randomSpawn = () => {
   bacon.y = Math.random() * -300;
@@ -107,7 +114,7 @@ const timeAdd = () => {
   gameTime = gameTime + 1;
   gameTimeTimer = 30 - gameTime;
   timer.innerText = `${gameTimeTimer} Seconds left`;
-  timerAudio.play()
+  timerAudio.play();
 };
 let timeInterval = setInterval(timeAdd, 1000);
 
@@ -117,7 +124,7 @@ const timesUp = () => {
     clearInterval(spawnInterval);
     clearInterval(timeInterval);
     clearInterval(gameLoopInterval);
-    timerAudio.pause()
+    timerAudio.pause();
     gameOver.innerText = `Time's up!`;
   }
 };
@@ -125,10 +132,8 @@ const timesUp = () => {
 /* RESPONISBLE FOR DROPPING ALL INGREDIENTS FROM TOP OF PAGE */
 // JUST ADDS TO THE Y AXIS EVERY FRAME
 const fall = () => {
-
   for (i = 0; i < 10; i++) {
     bacon.y = bacon.y + 1;
-
   }
   for (i = 0; i < 10; i++) {
     lettuce.y = lettuce.y + 1;
@@ -147,67 +152,117 @@ const fall = () => {
   }
 };
 
-
 /* IN CHARGE OF ALL HIT DETECTION */
 function hitDetection() {
-  if 
-    (bagel.x + bagel.width >= bacon.x &&
-      bagel.x <= bacon.x + bacon.width &&
-      bagel.y + bagel.height >= bacon.y &&
-      bagel.y <= bacon.y + bacon.height) {
-        score = score + 1;
+  if (
+    bagel.x + bagel.width >= bacon.x &&
+    bagel.x <= bacon.x + bacon.width &&
+    bagel.y + bagel.height >= bacon.y &&
+    bagel.y <= bacon.y + bacon.height
+  ) {
+    score = score + 1;
     bottomText.innerText = `Score: ${score}`;
-    bacon.y = -800
-      } else if(bagel.x + bagel.width >= lettuce.x &&
-        bagel.x <= lettuce.x + lettuce.width &&
-        bagel.y + bagel.height >= lettuce.y &&
-        bagel.y <= lettuce.y + lettuce.height) { 
-          score = score + 1;
-          bottomText.innerText = `Score: ${score}`;
-          lettuce.y = -800
-      } else if(bagel.x + bagel.width >= turkey.x &&
-        bagel.x <= turkey.x + turkey.width &&
-        bagel.y + bagel.height >= turkey.y &&
-        bagel.y <= turkey.y + turkey.height) {
-          score = score + 1;
-          bottomText.innerText = `Score: ${score}`;
-          turkey.y = -800
-      } else if (bagel.x + bagel.width >= tomato.x &&
-        bagel.x <= tomato.x + tomato.width &&
-        bagel.y + bagel.height >= tomato.y &&
-        bagel.y <= tomato.y + tomato.height){
-          score = score + 1;
-          bottomText.innerText = `Score: ${score}`;
-          tomato.y = -800
-        } else if (bagel.x + bagel.width >= mayo.x &&
-          bagel.x <= mayo.x + mayo.width &&
-          bagel.y + bagel.height >= mayo.y &&
-          bagel.y <= mayo.y + mayo.height) {
-            score = score + 1;
-          bottomText.innerText = `Score: ${score}`;
-          mayo.y = -800
-          } else if (
-            bagel.x + bagel.width >= cockroach.x &&
-            bagel.x <= cockroach.x + cockroach.width &&
-            bagel.y + bagel.height >= cockroach.y &&
-            bagel.y <= cockroach.y + cockroach.height
-          ) {
-            clearInterval(gameLoopInterval);
-            clearInterval(timeInterval);
-            timerAudio.pause()
-            gameOver.innerText = "GAME OVER";
-          }
-        }
+    bacon.y = -800;
+  } else if (
+    bagel.x + bagel.width >= lettuce.x &&
+    bagel.x <= lettuce.x + lettuce.width &&
+    bagel.y + bagel.height >= lettuce.y &&
+    bagel.y <= lettuce.y + lettuce.height
+  ) {
+    score = score + 1;
+    bottomText.innerText = `Score: ${score}`;
+    lettuce.y = -800;
+  } else if (
+    bagel.x + bagel.width >= turkey.x &&
+    bagel.x <= turkey.x + turkey.width &&
+    bagel.y + bagel.height >= turkey.y &&
+    bagel.y <= turkey.y + turkey.height
+  ) {
+    score = score + 1;
+    bottomText.innerText = `Score: ${score}`;
+    turkey.y = -800;
+  } else if (
+    bagel.x + bagel.width >= tomato.x &&
+    bagel.x <= tomato.x + tomato.width &&
+    bagel.y + bagel.height >= tomato.y &&
+    bagel.y <= tomato.y + tomato.height
+  ) {
+    score = score + 1;
+    bottomText.innerText = `Score: ${score}`;
+    tomato.y = -800;
+  } else if (
+    bagel.x + bagel.width >= mayo.x &&
+    bagel.x <= mayo.x + mayo.width &&
+    bagel.y + bagel.height >= mayo.y &&
+    bagel.y <= mayo.y + mayo.height
+  ) {
+    score = score + 1;
+    bottomText.innerText = `Score: ${score}`;
+    mayo.y = -800;
+  } else if (
+    bagel.x + bagel.width >= cockroach.x &&
+    bagel.x <= cockroach.x + cockroach.width &&
+    bagel.y + bagel.height >= cockroach.y &&
+    bagel.y <= cockroach.y + cockroach.height
+  ) {
+    clearInterval(gameLoopInterval);
+    clearInterval(timeInterval);
+    timerAudio.pause();
+    loseSound.play();
+    gameOver.innerText = "GAME OVER";
+  }
+}
 
-
-    /* CREATES ALL INGREDIENTS */
+/* CREATES ALL INGREDIENTS */
 const bagel = new ImageBagels(200, 350, "brown", bagelImage, 120, 120); //width then height
-let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 110, 70);
-let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,100, 60,);
-let turkey = new ImageBagels(Math.random() * 500, -250,"brown", turkeyImage, 105, 90,);
-let cockroach = new ImageBagels(Math.random() * 400, -430, "brown", cockroachImage, 60, 60,);
-let tomato = new ImageBagels(Math.random() * 500, -400,"red", tomatoImage, 80, 80,);
-let mayo = new ImageBagels(Math.random() * 500, -350,"white",mayoImage ,80, 100,);
+let lettuce = new ImageBagels(
+  Math.random() * 500,
+  -150,
+  "green",
+  lettuceImage,
+  110,
+  70
+);
+let bacon = new ImageBagels(
+  Math.random() * 500,
+  -50,
+  "red",
+  baconImage,
+  100,
+  60
+);
+let turkey = new ImageBagels(
+  Math.random() * 500,
+  -250,
+  "brown",
+  turkeyImage,
+  105,
+  90
+);
+let cockroach = new ImageBagels(
+  Math.random() * 400,
+  -430,
+  "brown",
+  cockroachImage,
+  60,
+  60
+);
+let tomato = new ImageBagels(
+  Math.random() * 500,
+  -400,
+  "red",
+  tomatoImage,
+  80,
+  80
+);
+let mayo = new ImageBagels(
+  Math.random() * 500,
+  -350,
+  "white",
+  mayoImage,
+  80,
+  100
+);
 
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
