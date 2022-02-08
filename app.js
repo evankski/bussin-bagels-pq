@@ -197,41 +197,90 @@ const fall = () => {
 // };
 
 function hitDetection() {
-  if (
+  if 
     (bagel.x + bagel.width >= bacon.x &&
       bagel.x <= bacon.x + bacon.width &&
       bagel.y + bagel.height >= bacon.y &&
-      bagel.y <= bacon.y + bacon.height) ||
-    (bagel.x + bagel.width >= lettuce.x &&
-      bagel.x <= lettuce.x + lettuce.width &&
-      bagel.y + bagel.height >= lettuce.y &&
-      bagel.y <= lettuce.y + lettuce.height) ||
-    (bagel.x + bagel.width >= turkey.x &&
-      bagel.x <= turkey.x + turkey.width &&
-      bagel.y + bagel.height >= turkey.y &&
-      bagel.y <= turkey.y + turkey.height) ||
-    (bagel.x + bagel.width >= tomato.x &&
-      bagel.x <= tomato.x + tomato.width &&
-      bagel.y + bagel.height >= tomato.y &&
-      bagel.y <= tomato.y + tomato.height) ||
-    (bagel.x + bagel.width >= mayo.x &&
-      bagel.x <= mayo.x + mayo.width &&
-      bagel.y + bagel.height >= mayo.y &&
-      bagel.y <= mayo.y + mayo.height)
-  ) {
-    score = score + 1;
+      bagel.y <= bacon.y + bacon.height) {
+        score = score + 1;
     bottomText.innerText = `Score: ${score}`;
-  } else if (
-    bagel.x + bagel.width >= cockroach.x &&
-    bagel.x <= cockroach.x + cockroach.width &&
-    bagel.y + bagel.height >= cockroach.y &&
-    bagel.y <= cockroach.y + cockroach.height
-  ) {
-    clearInterval(gameLoopInterval);
-    clearInterval(timeInterval);
-    gameOver.innerText = "GAME OVER";
-  }
-}
+    bacon.y = -800
+      } else if(bagel.x + bagel.width >= lettuce.x &&
+        bagel.x <= lettuce.x + lettuce.width &&
+        bagel.y + bagel.height >= lettuce.y &&
+        bagel.y <= lettuce.y + lettuce.height) { 
+          score = score + 1;
+          bottomText.innerText = `Score: ${score}`;
+          lettuce.y = -800
+      } else if(bagel.x + bagel.width >= turkey.x &&
+        bagel.x <= turkey.x + turkey.width &&
+        bagel.y + bagel.height >= turkey.y &&
+        bagel.y <= turkey.y + turkey.height) {
+          score = score + 1;
+          bottomText.innerText = `Score: ${score}`;
+          turkey.y = -800
+      } else if (bagel.x + bagel.width >= tomato.x &&
+        bagel.x <= tomato.x + tomato.width &&
+        bagel.y + bagel.height >= tomato.y &&
+        bagel.y <= tomato.y + tomato.height){
+          score = score + 1;
+          bottomText.innerText = `Score: ${score}`;
+          tomato.y = -800
+        } else if (bagel.x + bagel.width >= mayo.x &&
+          bagel.x <= mayo.x + mayo.width &&
+          bagel.y + bagel.height >= mayo.y &&
+          bagel.y <= mayo.y + mayo.height) {
+            score = score + 1;
+          bottomText.innerText = `Score: ${score}`;
+          mayo.y = -800
+          } else if (
+            bagel.x + bagel.width >= cockroach.x &&
+            bagel.x <= cockroach.x + cockroach.width &&
+            bagel.y + bagel.height >= cockroach.y &&
+            bagel.y <= cockroach.y + cockroach.height
+          ) {
+            clearInterval(gameLoopInterval);
+            clearInterval(timeInterval);
+            gameOver.innerText = "GAME OVER";
+          }
+        }
+// function hitDetection() {
+//   if (
+//     (bagel.x + bagel.width >= bacon.x &&
+//       bagel.x <= bacon.x + bacon.width &&
+//       bagel.y + bagel.height >= bacon.y &&
+//       bagel.y <= bacon.y + bacon.height) 
+//     (bagel.x + bagel.width >= lettuce.x &&
+//       bagel.x <= lettuce.x + lettuce.width &&
+//       bagel.y + bagel.height >= lettuce.y &&
+//       bagel.y <= lettuce.y + lettuce.height) ||
+//     (bagel.x + bagel.width >= turkey.x &&
+//       bagel.x <= turkey.x + turkey.width &&
+//       bagel.y + bagel.height >= turkey.y &&
+//       bagel.y <= turkey.y + turkey.height) ||
+//     (bagel.x + bagel.width >= tomato.x &&
+//       bagel.x <= tomato.x + tomato.width &&
+//       bagel.y + bagel.height >= tomato.y &&
+//       bagel.y <= tomato.y + tomato.height) ||
+//     (bagel.x + bagel.width >= mayo.x &&
+//       bagel.x <= mayo.x + mayo.width &&
+//       bagel.y + bagel.height >= mayo.y &&
+//       bagel.y <= mayo.y + mayo.height)
+//   ) {
+//     score = score + 1;
+//     bottomText.innerText = `Score: ${score}`;
+//     bacon.y = -800
+//   } else if (
+//     bagel.x + bagel.width >= cockroach.x &&
+//     bagel.x <= cockroach.x + cockroach.width &&
+//     bagel.y + bagel.height >= cockroach.y &&
+//     bagel.y <= cockroach.y + cockroach.height
+//   ) {
+//     clearInterval(gameLoopInterval);
+//     clearInterval(timeInterval);
+//     gameOver.innerText = "GAME OVER";
+//   }
+// }
 
 // function createBacon() {
 //         bacon.render()
