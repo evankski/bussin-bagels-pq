@@ -6,11 +6,25 @@ let gameLoopInterval = setInterval(gameLoop, 60);
 const pressedKeys = {};
 
 const bagelImage = new Image();
-bagelImage.src = "./img/bagelPNG.png";
-bagelImage.width = 10
-bagelImage.height = 10
+bagelImage.src = "./img/bagelImage.png";
 
+const lettuceImage = new Image();
+lettuceImage.src = "./img/lettuceSlice.png"
 
+const cockroachImage = new Image();
+cockroachImage.src = "./img/cartoonCockroachTransparent.png"
+
+const baconImage = new Image();
+baconImage.src = "./img/cartoonBacon.png"
+
+const mayoImage = new Image();
+mayoImage.src = "./img/mayoJar.png"
+
+const tomatoImage = new Image();
+tomatoImage.src = "./img/betterTomato.png"
+
+const turkeyImage = new Image();
+turkeyImage.src = "./img/cartoonSandwichMeat.png"
 
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
@@ -92,7 +106,7 @@ class ImageBagels extends Bagels {
         this.height = height
     }
     render() {
-        console.log(this.image.src)
+        // console.log(this.image.src)
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height)
         // ctx.drawImage(this.image, this.x, this.y);
     }
@@ -226,13 +240,13 @@ function hitDetection() {
 // Creating the ingredients
 // const bagel = new Bagels(355, 470, 90, 20, "./img/bagelPNG.png", "image");
 // const bagel = new ImageBagels(200, 470, "brown", bagelImage);
-const bagel = new ImageBagels(200, 370, "brown", bagelImage, 100, 100);
-let bacon = new Bagels(Math.random() * 500, -50, 60, 20, "red");
-let lettuce = new Bagels(Math.random() * 500, -150, 50, 50, "green");
-let turkey = new Bagels(Math.random() * 500, -250, 50, 15, "pink");
-let cockroach = new Bagels(Math.random() * 500, -350, 50, 25, "#C4A484");
-let tomato = new Bagels(Math.random() * 500, -400, 60, 60, "maroon");
-let mayo = new Bagels(Math.random() * 500, -450, 60, 60, "white");
+const bagel = new ImageBagels(200, 350, "brown", bagelImage, 170, 170);
+let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 140, 140);
+let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,170, 170,);
+let turkey = new ImageBagels(Math.random() * 500, -250,"brown", turkeyImage,130, 130,);
+let cockroach = new ImageBagels(Math.random() * 500, -350, "brown", cockroachImage, 90, 90,);
+let tomato = new ImageBagels(Math.random() * 500, -400,"red", tomatoImage, 90, 90,);
+let mayo = new ImageBagels(Math.random() * 500, -450,"white",mayoImage ,120, 120,);
 
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
