@@ -1,5 +1,6 @@
 /* BASIC VARIABLES */
 const canvas = document.querySelector("#canvas");
+
 let score = 0;
 let gameTime = 0;
 let gameLoopInterval = setInterval(gameLoop, 60);
@@ -303,3 +304,7 @@ function gameLoop() {
   timesUp();
 }
 gameLoop();
+
+startButton.addEventListener("click", function() {
+  window.location.reload()
+});
