@@ -38,10 +38,12 @@ const itemSound5 = new Audio("collectItem.mp3");
 
 const loseSound = new Audio("loseSound.mp3");
 
-const playSound = () => {
-  itemSound.play()
-}
-
+timerAudio.volume = 0.3
+itemSound.volume = 0.3
+itemSound2.volume = 0.3
+itemSound3.volume = 0.3
+itemSound4.volume = 0.3
+itemSound5.volume = 0.3
 /* KEYSTROKE EVENT LISTENERS */
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
