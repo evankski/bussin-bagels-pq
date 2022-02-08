@@ -1,10 +1,11 @@
-/* DOM SELECTORS && EVENT LISTENERS */
+/* BASIC VARIABLES */
 const canvas = document.querySelector("#canvas");
 let score = 0;
 let gameTime = 0;
 let gameLoopInterval = setInterval(gameLoop, 60);
 const pressedKeys = {};
 
+/* VARIABLES FOR ALL IMAGES */
 const bagelImage = new Image();
 bagelImage.src = "./img/cartoonBagel.png";
 
@@ -26,8 +27,11 @@ tomatoImage.src = "./img/betterTomato.png"
 const turkeyImage = new Image();
 turkeyImage.src = "./img/cartoonSandwichMeat.png"
 
+/* KEYSTROKE EVENT LISTENERS */
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
+
+/* DOM SELECTORS */
 let bottomText = document.querySelector("#bottom-text");
 let time = document.querySelector("#timer");
 let gameOver = document.querySelector("#game-over");
@@ -44,6 +48,7 @@ const ctx = canvas.getContext("2d");
 
 /* GAME FUNCTIONS */
 
+/* ORIGINAL CLASS FOR MAKING INGREDIENTS */
 class Bagels {
   constructor(x, y, color) {
     this.x = x;
@@ -60,6 +65,7 @@ class Bagels {
   }
 }
 
+/* SPAWNS IN AN IMAGE IN PLACE OF THE OLD BOXES */
 class ImageBagels extends Bagels {
     constructor(x, y, color, image, width, height) {
         super(x, y, color)
@@ -76,6 +82,8 @@ class ImageBagels extends Bagels {
 
 
 
+/* RESETS ALL INGREDIENTS EVERYTIME THEY HIT THE BOTTOM OF THE PAGE */ 
+// RANDOMLY CHANGES THE X AND Y AXIS ON AN INTERVAL
 const randomSpawn = () => {
   bacon.y = Math.random() * -300;
   lettuce.y = Math.random() * -300;
@@ -93,6 +101,7 @@ const randomSpawn = () => {
 };
 let spawnInterval = setInterval(randomSpawn, 6000);
 
+/* CREATES THE GAME TIMER */
 const timeAdd = () => {
   gameTime = gameTime + 1;
   gameTimeTimer = 30 - gameTime;
@@ -100,6 +109,7 @@ const timeAdd = () => {
 };
 let timeInterval = setInterval(timeAdd, 1000);
 
+/* STOPS ALL INTERVALS WHEN GAME TIME IS UP */
 const timesUp = () => {
   if (gameTime === 30) {
     clearInterval(spawnInterval);
@@ -109,6 +119,8 @@ const timesUp = () => {
   }
 };
 
+/* RESPONISBLE FOR DROPPING ALL INGREDIENTS FROM TOP OF PAGE */
+// JUST ADDS TO THE Y AXIS EVERY FRAME
 const fall = () => {
 
   for (i = 0; i < 10; i++) {
@@ -133,7 +145,7 @@ const fall = () => {
 };
 
 
-
+/* IN CHARGE OF ALL HIT DETECTION */
 function hitDetection() {
   if 
     (bagel.x + bagel.width >= bacon.x &&
@@ -183,7 +195,8 @@ function hitDetection() {
           }
         }
 
-// Creating the ingredients
+
+    /* CREATES ALL INGREDIENTS */
 const bagel = new ImageBagels(200, 350, "brown", bagelImage, 120, 120); //width then height
 let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 110, 90);
 let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,100, 60,);
@@ -194,6 +207,7 @@ let mayo = new ImageBagels(Math.random() * 500, -350,"white",mayoImage ,80, 100,
 
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
+/* MAKES ARROW KEYS AND WASD MOVE BAGEL */
 function movementHandler() {
   const speed = 25;
 
@@ -203,7 +217,7 @@ function movementHandler() {
   if (pressedKeys.w || pressedKeys.ArrowUp) bagel.x -= speed;
 }
 
-
+/* EVERYTHING THAT HAPPENS WITHIN THE GAME */
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   movementHandler();
