@@ -21,11 +21,18 @@ canvas {
 p {
   font-size: 40px;
   color: white;
+  font-family: 'Rowdies', cursive;
 }
 
 h1 {
   font-size: 60px;
   color: red;
+  font-family: 'Rowdies', cursive;
+}
+
+.title{
+  color: white;
+  font-family: 'Rowdies', cursive;
 }
 /* #container {
   max-width: 50em;

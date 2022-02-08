@@ -31,6 +31,10 @@ turkeyImage.src = "./img/cartoonSandwichMeat.png";
 const timerAudio = new Audio("countdownSound.mp3");
 
 const itemSound = new Audio("collectItem.mp3");
+const itemSound2 = new Audio("collectItem.mp3");
+const itemSound3 = new Audio("collectItem.mp3");
+const itemSound4 = new Audio("collectItem.mp3");
+const itemSound5 = new Audio("collectItem.mp3");
 
 const loseSound = new Audio("loseSound.mp3");
 
@@ -111,10 +115,10 @@ let spawnInterval = setInterval(randomSpawn, 6000);
 
 /* CREATES THE GAME TIMER */
 const timeAdd = () => {
+  timerAudio.play();
   gameTime = gameTime + 1;
   gameTimeTimer = 30 - gameTime;
   timer.innerText = `${gameTimeTimer} Seconds left`;
-  timerAudio.play();
 };
 let timeInterval = setInterval(timeAdd, 1000);
 
@@ -163,6 +167,7 @@ function hitDetection() {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
     bacon.y = -800;
+    itemSound.play()
   } else if (
     bagel.x + bagel.width >= lettuce.x &&
     bagel.x <= lettuce.x + lettuce.width &&
@@ -172,6 +177,7 @@ function hitDetection() {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
     lettuce.y = -800;
+    itemSound2.play()
   } else if (
     bagel.x + bagel.width >= turkey.x &&
     bagel.x <= turkey.x + turkey.width &&
@@ -181,6 +187,7 @@ function hitDetection() {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
     turkey.y = -800;
+    itemSound3.play()
   } else if (
     bagel.x + bagel.width >= tomato.x &&
     bagel.x <= tomato.x + tomato.width &&
@@ -190,6 +197,7 @@ function hitDetection() {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
     tomato.y = -800;
+    itemSound4.play()
   } else if (
     bagel.x + bagel.width >= mayo.x &&
     bagel.x <= mayo.x + mayo.width &&
@@ -199,6 +207,7 @@ function hitDetection() {
     score = score + 1;
     bottomText.innerText = `Score: ${score}`;
     mayo.y = -800;
+    itemSound5.play()
   } else if (
     bagel.x + bagel.width >= cockroach.x &&
     bagel.x <= cockroach.x + cockroach.width &&
