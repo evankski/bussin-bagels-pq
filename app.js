@@ -6,13 +6,13 @@ let gameLoopInterval = setInterval(gameLoop, 60);
 const pressedKeys = {};
 
 const bagelImage = new Image();
-bagelImage.src = "./img/bagelImage.png";
+bagelImage.src = "./img/cartoonBagel.png";
 
 const lettuceImage = new Image();
 lettuceImage.src = "./img/lettuceSlice.png"
 
 const cockroachImage = new Image();
-cockroachImage.src = "./img/cartoonCockroachTransparent.png"
+cockroachImage.src = "./img/newCockroach.png"
 
 const baconImage = new Image();
 baconImage.src = "./img/cartoonBacon.png"
@@ -124,18 +124,18 @@ const randomSpawn = () => {
   bacon.y = Math.random() * -300;
   lettuce.y = Math.random() * -300;
   turkey.y = Math.random() * -300;
-  cockroach.y = Math.random() * -300;
+  cockroach.y = -350;
   tomato.y = Math.random() * -300;
   mayo.y = Math.random() * -300;
 
   bacon.x = Math.random() * 750;
   lettuce.x = Math.random() * 750;
   turkey.x = Math.random() * 750;
-  cockroach.x = Math.random() * 750;
+  cockroach.x = Math.random() * 600;
   tomato.x = Math.random() * 750;
   mayo.x = Math.random() * 750;
 };
-let spawnInterval = setInterval(randomSpawn, 5000);
+let spawnInterval = setInterval(randomSpawn, 6000);
 
 const timeAdd = () => {
   gameTime = gameTime + 1;
@@ -240,13 +240,13 @@ function hitDetection() {
 // Creating the ingredients
 // const bagel = new Bagels(355, 470, 90, 20, "./img/bagelPNG.png", "image");
 // const bagel = new ImageBagels(200, 470, "brown", bagelImage);
-const bagel = new ImageBagels(200, 350, "brown", bagelImage, 170, 170);
-let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 140, 140);
-let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,170, 170,);
-let turkey = new ImageBagels(Math.random() * 500, -250,"brown", turkeyImage,130, 130,);
-let cockroach = new ImageBagels(Math.random() * 500, -350, "brown", cockroachImage, 90, 90,);
-let tomato = new ImageBagels(Math.random() * 500, -400,"red", tomatoImage, 90, 90,);
-let mayo = new ImageBagels(Math.random() * 500, -450,"white",mayoImage ,120, 120,);
+const bagel = new ImageBagels(200, 350, "brown", bagelImage, 120, 120); //width then height
+let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 110, 90);
+let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,100, 60,);
+let turkey = new ImageBagels(Math.random() * 500, -250,"brown", turkeyImage, 105, 90,);
+let cockroach = new ImageBagels(Math.random() * 400, -600, "brown", cockroachImage, 60, 60,);
+let tomato = new ImageBagels(Math.random() * 500, -400,"red", tomatoImage, 80, 80,);
+let mayo = new ImageBagels(Math.random() * 500, -350,"white",mayoImage ,80, 100,);
 
 // const bacon = new Ingredients(170, 20, 60, 20, 'red')
 
@@ -266,9 +266,9 @@ function gameLoop() {
   bacon.render();
   lettuce.render();
   turkey.render();
-  cockroach.render();
   tomato.render();
   mayo.render();
+  cockroach.render();
   // randomSpawn()
   fall();
   bagel.render();

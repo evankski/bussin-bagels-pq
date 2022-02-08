@@ -6,11 +6,14 @@ html,body {
 body {
   padding-top: 1em;
   text-align: center;
-  background-color: lightgray;
+  background-image: url(./img/woodBackgroundOne.jpeg);
+  /* background-color: lightgray; */
 }
 
 canvas {
   background-color: darkgray;
+  background-image: url(./img/cartoonKitchen.png);
+  background-size: cover;
   width: 800;
   height: 500;
 }
