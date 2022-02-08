@@ -27,6 +27,7 @@ tomatoImage.src = "./img/betterTomato.png"
 const turkeyImage = new Image();
 turkeyImage.src = "./img/cartoonSandwichMeat.png"
 
+const timerAudio = new Audio("countdownSound.mp3");
 /* KEYSTROKE EVENT LISTENERS */
 document.addEventListener("keydown", (e) => (pressedKeys[e.key] = true));
 document.addEventListener("keyup", (e) => (pressedKeys[e.key] = false)); // this is what makes the function stop when key is lifted up
@@ -106,6 +107,7 @@ const timeAdd = () => {
   gameTime = gameTime + 1;
   gameTimeTimer = 30 - gameTime;
   timer.innerText = `${gameTimeTimer} Seconds left`;
+  timerAudio.play()
 };
 let timeInterval = setInterval(timeAdd, 1000);
 
@@ -115,6 +117,7 @@ const timesUp = () => {
     clearInterval(spawnInterval);
     clearInterval(timeInterval);
     clearInterval(gameLoopInterval);
+    timerAudio.pause()
     gameOver.innerText = `Time's up!`;
   }
 };
@@ -191,6 +194,7 @@ function hitDetection() {
           ) {
             clearInterval(gameLoopInterval);
             clearInterval(timeInterval);
+            timerAudio.pause()
             gameOver.innerText = "GAME OVER";
           }
         }
@@ -198,7 +202,7 @@ function hitDetection() {
 
     /* CREATES ALL INGREDIENTS */
 const bagel = new ImageBagels(200, 350, "brown", bagelImage, 120, 120); //width then height
-let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 110, 90);
+let lettuce = new ImageBagels(Math.random() * 500, -150, "green", lettuceImage, 110, 70);
 let bacon = new ImageBagels(Math.random() * 500, -50,"red", baconImage ,100, 60,);
 let turkey = new ImageBagels(Math.random() * 500, -250,"brown", turkeyImage, 105, 90,);
 let cockroach = new ImageBagels(Math.random() * 400, -430, "brown", cockroachImage, 60, 60,);
