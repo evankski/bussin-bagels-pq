@@ -118,7 +118,7 @@ let spawnInterval = setInterval(randomSpawn, 6000);
 
 /* CREATES THE GAME TIMER */
 const timeAdd = () => {
-  timerAudio.play();
+
   gameTime = gameTime + 1;
   gameTimeTimer = 30 - gameTime;
   timer.innerText = `${gameTimeTimer} Seconds left`;
@@ -290,6 +290,7 @@ function movementHandler() {
 
 /* EVERYTHING THAT HAPPENS WITHIN THE GAME */
 function gameLoop() {
+  timerAudio.play();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   movementHandler();
   bacon.render();
@@ -308,3 +309,8 @@ gameLoop();
 startButton.addEventListener("click", function() {
   window.location.reload()
 });
+// startButton.addEventListener("click", function() {
+//   const gameLoopInterval = setInterval(gameLoop, 60)
+//   const timeInterval = setInterval(timeAdd, 1000);
+//   const spawnInterval = setInterval(randomSpawn, 6000);
+// });

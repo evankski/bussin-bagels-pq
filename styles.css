@@ -34,6 +34,14 @@ h1 {
   color: white;
   font-family: 'Rowdies', cursive;
 }
+
+.restart-button {
+  margin-top: 20px;
+  padding: 20px 40px 20px 40px;
+  font-family: 'Rowdies', cursive;
+  font-size: 30px;
+}
+
 /* #container {
   max-width: 50em;
   margin: 0 auto;
