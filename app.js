@@ -41,7 +41,7 @@ const itemSound5 = new Audio("collectItem.mp3");
 
 const loseSound = new Audio("loseSound.mp3");
 
-timerAudio.volume = 0.2
+timerAudio.volume = 0.3
 itemSound.volume = 0.3
 itemSound2.volume = 0.3
 itemSound3.volume = 0.3
@@ -309,7 +309,7 @@ function movementHandler() {
 
 /* EVERYTHING THAT HAPPENS WITHIN THE GAME */
 function gameLoop() {
-  // timerAudio.play();
+  timerAudio.play();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   movementHandler();
   bacon.render();
