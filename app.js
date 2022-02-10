@@ -136,8 +136,9 @@ const timesUp = () => {
     clearInterval(timeInterval);
     clearInterval(gameLoopInterval);
     timerAudio.pause();
-    gameOver.innerText = `Time's up!`;
+    gameOver.innerText = `Time's up! Your score is ${score}`;
     restartButton.classList.remove('hide')
+    bottomText.classList.add('hide')
   }
 };
 
@@ -239,8 +240,9 @@ function hitDetection() {
     clearInterval(spawnInterval)
     timerAudio.pause();
     loseSound.play();
-    gameOver.innerText = "GAME OVER";
+    gameOver.innerText = `GAME OVER! Your score is ${score}`;
     restartButton.classList.remove('hide')
+    bottomText.classList.add('hide')
   }
 }
 
