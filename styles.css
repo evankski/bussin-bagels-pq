@@ -35,11 +35,27 @@ h1 {
   font-family: 'Rowdies', cursive;
 }
 
-.restart-button {
+.start-button {
   margin-top: 20px;
   padding: 20px 40px 20px 40px;
   font-family: 'Rowdies', cursive;
   font-size: 30px;
+}
+#restart-button {
+  margin-top: 20px;
+  padding: 20px 40px 20px 40px;
+  font-family: 'Rowdies', cursive;
+  font-size: 30px;
+}
+
+.hide {
+  display: none;
+}
+
+.instructions {
+  font-size: 20px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 /* #container {

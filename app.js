@@ -3,8 +3,10 @@ const canvas = document.querySelector("#canvas");
 
 let score = 0;
 let gameTime = 0;
-let gameLoopInterval = setInterval(gameLoop, 60);
+let gameLoopInterval;
 const pressedKeys = {};
+
+
 
 /* VARIABLES FOR ALL IMAGES */
 const bagelImage = new Image();
@@ -39,7 +41,7 @@ const itemSound5 = new Audio("collectItem.mp3");
 
 const loseSound = new Audio("loseSound.mp3");
 
-timerAudio.volume = 0.3
+timerAudio.volume = 0.2
 itemSound.volume = 0.3
 itemSound2.volume = 0.3
 itemSound3.volume = 0.3
@@ -54,6 +56,8 @@ let bottomText = document.querySelector("#bottom-text");
 let time = document.querySelector("#timer");
 let gameOver = document.querySelector("#game-over");
 let startButton = document.querySelector("#start-button-id");
+let restartButton = document.querySelector("#restart-button");
+let instructions = document.querySelector('.instructions');
 
 /* GAMESTATE/CAVAS RENDERING */
 // sets up a 2d canvas
@@ -114,7 +118,7 @@ const randomSpawn = () => {
   tomato.x = Math.random() * 750;
   mayo.x = Math.random() * 750;
 };
-let spawnInterval = setInterval(randomSpawn, 6000);
+let spawnInterval;
 
 /* CREATES THE GAME TIMER */
 const timeAdd = () => {
@@ -123,7 +127,7 @@ const timeAdd = () => {
   gameTimeTimer = 30 - gameTime;
   timer.innerText = `${gameTimeTimer} Seconds left`;
 };
-let timeInterval = setInterval(timeAdd, 1000);
+let timeInterval;
 
 /* STOPS ALL INTERVALS WHEN GAME TIME IS UP */
 const timesUp = () => {
@@ -133,8 +137,21 @@ const timesUp = () => {
     clearInterval(gameLoopInterval);
     timerAudio.pause();
     gameOver.innerText = `Time's up!`;
+    restartButton.classList.remove('hide')
   }
 };
+
+// const startGame = () => {
+//   setTimeout(setInterval(gameLoop, 60), 5000)
+//   setTimeout(setInterval(timeAdd, 1000), 5000)
+//   setTimeout(setInterval(randomSpawn, 6000), 5000)
+//   // setTimeout(timerAudio.play, 5000)
+// }
+// startButton.addEventListener("click", function() {
+//   setInterval(gameLoop, 60)
+//   setInterval(timeAdd, 1000);
+//   setInterval(randomSpawn, 6000);
+//   });
 
 /* RESPONISBLE FOR DROPPING ALL INGREDIENTS FROM TOP OF PAGE */
 // JUST ADDS TO THE Y AXIS EVERY FRAME
@@ -219,9 +236,11 @@ function hitDetection() {
   ) {
     clearInterval(gameLoopInterval);
     clearInterval(timeInterval);
+    clearInterval(spawnInterval)
     timerAudio.pause();
     loseSound.play();
     gameOver.innerText = "GAME OVER";
+    restartButton.classList.remove('hide')
   }
 }
 
@@ -290,7 +309,7 @@ function movementHandler() {
 
 /* EVERYTHING THAT HAPPENS WITHIN THE GAME */
 function gameLoop() {
-  timerAudio.play();
+  // timerAudio.play();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   movementHandler();
   bacon.render();
@@ -304,13 +323,25 @@ function gameLoop() {
   hitDetection();
   timesUp();
 }
-gameLoop();
+// gameLoop();
+
+const startGame = () => {
+gameLoopInterval = setInterval(gameLoop, 60)
+timeInterval = setInterval(timeAdd, 1000);
+spawnInterval = setInterval(randomSpawn, 6000);
+}
+
+
+// startButton.addEventListener("click", startGame);
+
 
 startButton.addEventListener("click", function() {
-  window.location.reload()
+startGame()
+startButton.classList.add('hide')
+instructions.classList.add('hide')
+
 });
-// startButton.addEventListener("click", function() {
-//   const gameLoopInterval = setInterval(gameLoop, 60)
-//   const timeInterval = setInterval(timeAdd, 1000);
-//   const spawnInterval = setInterval(randomSpawn, 6000);
-// });
+
+restartButton.addEventListener("click", function(){
+  window.location.reload()
+})
