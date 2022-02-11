@@ -4,6 +4,8 @@ You will have 30 seconds to build the best bagel sandwich that you can! Catch ev
 You will be able to use your arrow keys to move your bagel back and fourth. Ingredients you would want to catch include: ham, lettuce, tomato, mayo, and bacon! 
 Make sure to watch out for the cockroaches, if you get one of those on your bagel you lose! Who would want to eat a cockroach, right?
 
+deployed version - https://evankski.github.io/bussin-bagels-pq/
+
 This project was completed using canvas
 
 ![Screen Shot 2022-02-10 at 4 03 11 PM](https://user-images.githubusercontent.com/95590888/153517627-a85c46ee-15ae-4702-805b-738fb0fa758b.png)
