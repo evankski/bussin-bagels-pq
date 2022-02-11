@@ -31,16 +31,19 @@ This project was completed using canvas
 
 # code highlight
 To make the ingredients and cockroach seem to randomly appear I actually just changed the x and y axis to reset randomly every 6 seconds. This creates the illusion that there is a new element everytime when it is infact the same element.
+
 ![Screen Shot 2022-02-10 at 4 17 57 PM](https://user-images.githubusercontent.com/95590888/153518826-68368c9f-70cd-474c-a71d-51cd3b6a48e7.png)
 
 
 To make the ingredients instantly vanish I also changed it to quickly bring the element to the top of the page to appear as though the bagel made the ingredient dissapear
+
 ![Screen Shot 2022-02-10 at 4 17 29 PM](https://user-images.githubusercontent.com/95590888/153518790-3516559b-7e4a-42ef-a60c-5eadd7f25018.png)
 
 
 # Original Wireframe
+![IMG_2211 2](https://user-images.githubusercontent.com/95590888/153518883-58a8a878-a8da-4aae-9ad3-19ccb258d5ce.jpg)
 
-![IMG_2211 2](https://us![Screen Shot 2022-02-10 at 4 15 30 PM](https://user-images.githubusercontent.com/95590888/153518622-3a6d1e50-4648-4f8e-b190-8640b1a81e5d.png)
+
 
 
 
