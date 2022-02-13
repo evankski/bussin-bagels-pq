@@ -58,6 +58,12 @@ h1 {
   padding-right: 150px;
 }
 
+.restart-par {
+  font-size: 20px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
 /* #container {
   max-width: 50em;
   margin: 0 auto;

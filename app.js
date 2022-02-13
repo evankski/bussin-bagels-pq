@@ -58,6 +58,7 @@ let gameOver = document.querySelector("#game-over");
 let startButton = document.querySelector("#start-button-id");
 let restartButton = document.querySelector("#restart-button");
 let instructions = document.querySelector('.instructions');
+let restartP = document.querySelector('.restart-par')
 
 /* GAMESTATE/CAVAS RENDERING */
 // sets up a 2d canvas
@@ -137,7 +138,7 @@ const timesUp = () => {
     clearInterval(gameLoopInterval);
     timerAudio.pause();
     gameOver.innerText = `Time's up! Your score is ${score}`;
-    restartButton.classList.remove('hide')
+    // restartButton.classList.remove('hide')
     bottomText.classList.add('hide')
   }
 };
@@ -243,6 +244,7 @@ function hitDetection() {
     gameOver.innerText = `GAME OVER! Your score is ${score}`;
     restartButton.classList.remove('hide')
     bottomText.classList.add('hide')
+    // gameOver.classList.remove('hide')
   }
 }
 
@@ -341,9 +343,31 @@ startButton.addEventListener("click", function() {
 startGame()
 startButton.classList.add('hide')
 instructions.classList.add('hide')
-
+restartButton.classList.remove('hide')
+restartP.classList.add('hide')
+bottomText.classList.remove('hide')
+// gameOver.classList.remove('hide')
 });
 
 restartButton.addEventListener("click", function(){
-  window.location.reload()
+  bacon.y = -50
+  lettuce.y = -150
+  tomato.y = -400
+  mayo.y = -350
+  turkey.y = -250
+  cockroach.y = -430
+  bagel.x = 200
+  gameTime = 0
+  score = 0
+  timerAudio.pause();
+  startButton.classList.remove('hide')
+  restartButton.classList.add('hide')
+  restartP.classList.remove('hide')
+  // gameOver.classList.add('hide')
+  gameOver.innerText = ''
+
+  clearInterval(spawnInterval);
+    clearInterval(timeInterval);
+    clearInterval(gameLoopInterval)
+
 })
