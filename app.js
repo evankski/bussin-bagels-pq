@@ -31,15 +31,15 @@ const turkeyImage = new Image();
 turkeyImage.src = "./img/cartoonSandwichMeat.png";
 
 /* AUDIO VARIABLES */
-const timerAudio = new Audio("countdownSound.mp3");
+const timerAudio = new Audio("./audio/countdownSound.mp3");
 
-const itemSound = new Audio("collectItem.mp3");
-const itemSound2 = new Audio("collectItem.mp3");
-const itemSound3 = new Audio("collectItem.mp3");
-const itemSound4 = new Audio("collectItem.mp3");
-const itemSound5 = new Audio("collectItem.mp3");
+const itemSound = new Audio("./audio/collectItem.mp3");
+const itemSound2 = new Audio("./audio/collectItem.mp3");
+const itemSound3 = new Audio("./audio/collectItem.mp3");
+const itemSound4 = new Audio("./audio/collectItem.mp3");
+const itemSound5 = new Audio("./audio/collectItem.mp3");
 
-const loseSound = new Audio("loseSound.mp3");
+const loseSound = new Audio("./audio/loseSound.mp3");
 
 timerAudio.volume = 0.2
 itemSound.volume = 0.2
