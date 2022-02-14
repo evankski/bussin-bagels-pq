@@ -363,6 +363,7 @@ restartButton.addEventListener("click", function(){
   startButton.classList.remove('hide')
   restartButton.classList.add('hide')
   restartP.classList.remove('hide')
+  timerAudio.currentTime = 0
   // gameOver.classList.add('hide')
   gameOver.innerText = ''
 
